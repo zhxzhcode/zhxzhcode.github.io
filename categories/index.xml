@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on My New Hugo Site</title>
+    <link>https://zhxzhcode.github.io/categories/</link>
+    <description>Recent content in Categories on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 08 Sep 2020 22:04:51 +0800</lastBuildDate>
+    
+	<atom:link href="https://zhxzhcode.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>新手上路</title>
+      <link>https://zhxzhcode.github.io/categories/%E6%96%B0%E6%89%8B%E4%B8%8A%E8%B7%AF/</link>
+      <pubDate>Tue, 08 Sep 2020 22:04:51 +0800</pubDate>
+      
+      <guid>https://zhxzhcode.github.io/categories/%E6%96%B0%E6%89%8B%E4%B8%8A%E8%B7%AF/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
