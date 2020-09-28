@@ -13,10 +13,10 @@
     
     <item>
       <title>CFS调度算法(二)--进程选择</title>
-      <link>https://zhxzhcode.github.io/post/blog/</link>
+      <link>https://zhxzhcode.github.io/linux/process/process_sched_processchose/</link>
       <pubDate>Tue, 08 Sep 2020 22:04:51 +0800</pubDate>
       
-      <guid>https://zhxzhcode.github.io/post/blog/</guid>
+      <guid>https://zhxzhcode.github.io/linux/process/process_sched_processchose/</guid>
       <description>CFS如何进行进程选择</description>
     </item>
     

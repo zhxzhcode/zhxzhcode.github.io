@@ -3,22 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zhxzhcode.github.io/linux/</loc>
+    <lastmod>2020-09-28T12:55:08+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxzhcode.github.io/</loc>
+    <lastmod>2020-09-28T12:55:08+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxzhcode.github.io/linux/process/porcess_sched_time/</loc>
+    <lastmod>2020-09-28T12:55:08+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhxzhcode.github.io/categories/</loc>
     <lastmod>2020-09-08T22:04:51+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://zhxzhcode.github.io/post/blog/</loc>
-    <lastmod>2020-09-08T22:04:51+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhxzhcode.github.io/</loc>
-    <lastmod>2020-09-08T22:04:51+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhxzhcode.github.io/post/</loc>
+    <loc>https://zhxzhcode.github.io/linux/process/process_sched_processchose/</loc>
     <lastmod>2020-09-08T22:04:51+08:00</lastmod>
   </url>
   
