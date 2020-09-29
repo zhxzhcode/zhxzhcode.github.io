@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tags :: My New Hugo Site</title>
+    <title>Chapter 5 初始化与清理 :: My New Hugo Site</title>
 
     
     <link href="/css/nucleus.css?1601369875" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/tags/">
+  <body class="" data-url="/java/chapter5/initialize/">
     <nav id="sidebar" class="">
 
 
@@ -95,8 +95,8 @@
   
     
     <li data-nav-id="/java/" title="Javas" class="dd-item 
+        parent
         
-        active
         
         ">
       <a href="/java/">
@@ -121,7 +121,7 @@
  
   
     
-      <li data-nav-id="/java/chapter5/initialize/" title="Chapter 5 初始化与清理" class="dd-item ">
+      <li data-nav-id="/java/chapter5/initialize/" title="Chapter 5 初始化与清理" class="dd-item active">
         <a href="/java/chapter5/initialize/">
         Chapter 5 初始化与清理
         
@@ -151,7 +151,7 @@
     
     <li data-nav-id="/linux/" title="Linuxes" class="dd-item 
         
-        active
+        
         
         ">
       <a href="/linux/">
@@ -261,7 +261,13 @@
             
           
           
-            <a href='/'>My New Hugo Site</a> > Tags
+            
+            
+          
+          
+            <a href='/'>My New Hugo Site</a> > <a href='/java/'>Javas</a> > Chapter 5 初始化与清理
+          
+        
           
         
           
@@ -272,7 +278,26 @@
                 
                     <div class="progress">
     <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#21-区分重载的方法">2.1 区分重载的方法</a></li>
+  </ul>
 
+  <ul>
+    <li><a href="#41构造器中调用构造器">4.1构造器中调用构造器</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#51-指定初始化">5.1 指定初始化</a></li>
+    <li><a href="#52-构造器初始化">5.2 构造器初始化</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#54-静态数据的初始化">5.4 静态数据的初始化</a></li>
+    <li><a href="#55-实例初始化">5.5 实例初始化</a></li>
+    <li><a href="#56数组初始化">5.6数组初始化</a></li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -288,24 +313,315 @@
           
             <h1>
               
-                tag ::
-              
-              Tags
+              Chapter 5 初始化与清理
             </h1>
           
 
         
 
 
+<h1 id="1构造器确保初始化">1.构造器确保初始化</h1>
+<p>==***构造器：***== 在创建对象时被自动调用的特殊方法。</p>
+<p>Java中构造器采用与类相同的名字。</p>
+<p>当你new一个对象时，将会位对象分配存储空间，并且调用相应的构造器。</p>
+<p>不接受任何参数的构造器叫 ==<em><strong>默认构造器</strong></em>==。</p>
+<pre><code>class Rock {
+    Rock(){
+        System.out.print(&quot;Rock &quot;);
+    }
+}
+
+public class SimpleConstructor{
+    public static void main(String[] args){
+        for(int i=0;i&lt;0;i++)
+            new Rock();
+    }
+}
+</code></pre><p><em><strong>output:</strong></em></p>
+<pre><code>Rock Rock Rock Rock Rock.... 
+</code></pre><p>构造器也可以接受参数，我们就可以在初始化对象时候提供实际的参数。</p>
+<pre><code>class Rock2{
+        Rock2(int i){
+            //this is the consructor.
+            System.out.print(&quot;Rock &quot;+i+&quot; &quot;);
+        }
+    }
+    public class SimpleConstructor2{
+        public static void main(String[] args){
+            for(int i=0;i&lt;10;i++){
+                new Rock2(i);
+            }
+        }
+    }
+</code></pre><h1 id="2方法重载">2.方法重载</h1>
+<p>所谓方法重载拿构造器举例，你想要以多种方法来构造这个函数，那么你可以写出好几种构造方法。</p>
+<pre><code>class Tree{
+    int height;
+    Tree(){
+        System.out.println(&quot;Planting a seedind&quot;);
+        height = 0;
+    }
+    Tree(int initialHeight){
+        height = initialHeight;
+        System.out.println(&quot;Creat new Tree that is &quot;+height+&quot; free tall&quot;);
+    }
+    void info(){
+        System.out.println(&quot;Tree is &quot;+height+&quot; feet tall&quot;);
+    }
+    void info(String s){
+        System.out.println(s+&quot;:this is &quot;+height+&quot; feet tall&quot;);
+    }
+}
+public class Overliading {
+    public static void main(String[] args){
+        for(int i = 0;i&lt;5;i++){
+            Tree t = new Tree(i);
+            t.info();
+            t.info(&quot;overloaded method&quot;);
+        }
+        new Tree();
+    }
+}
+</code></pre><h2 id="21-区分重载的方法">2.1 区分重载的方法</h2>
+<p>每个重载的方法都有独一无二的参数类型列表。</p>
+<p>参数顺序不同也可以区分两个方法。(不推荐，不利于代码维护)</p>
+<pre><code>public class OverloadingOrder {
+  static void f(String s, int i) {
+    System.out.print(&quot;String: &quot; + s + &quot;, int: &quot; + i);
+  }
+  static void f(int i, String s) {
+    System.out.print(&quot;int: &quot; + i + &quot;, String: &quot; + s);
+  }
+  public static void main(String[] args) {
+    f(&quot;String first&quot;, 11);
+    f(99, &quot;Int first&quot;);
+  }
+}
+
+/* Output:
+String: String first, int: 11
+int: 99, String: Int first
+*///:~
+</code></pre><h1 id="3默认构造器">3.默认构造器</h1>
+<p>如果你写的类没有构造器，编译器会帮你自动创建一个默认构造器。</p>
+<h1 id="4this关键字">4.this关键字</h1>
+<p>只能用于方法中。表示对“调用方法的那个对象”的引用。</p>
+<p>编译器为了简化代码编写，暗自把引用作为第一个参数传递给peel()，来区别peel是a还是b调用的。</p>
+<pre><code>class Banana { void peel(int i) { /* ... */ } }
+
+public class BananaPeel {
+  public static void main(String[] args) {
+    Banana a = new Banana(),
+           b = new Banana();
+    a.peel(1);//编译器Banana.peel(a,1);
+    b.peel(2);//编译器Banana.peel(b,1);
+  }
+} 
+</code></pre><p>this用法</p>
+<pre><code>public class Leaf {
+  int i = 0;
+  Leaf increment() {
+    i++;
+    return this;
+  }
+  void print() {
+    System.out.println(&quot;i = &quot; + i);
+  }
+  public static void main(String[] args) {
+    Leaf x = new Leaf();
+    x.increment().increment().increment().print();
+  }
+} 
+/* Output:
+i = 3
+*///:~
+</code></pre><h2 id="41构造器中调用构造器">4.1构造器中调用构造器</h2>
+<p>可以为一个类写多个构造器，这里就要注意如何在构造其中调用构造器？</p>
+<p>this关键字在这里起到了重要作用。</p>
+<p>只能用this调用一个构造器。</p>
+<p>必须将构造器调用放于最起始位置。</p>
+<p>除构造器之外，编译器禁止在其他任何方法种调用构造器。</p>
+<pre><code>public class Flower {
+  int petalCount = 0;
+  String s = &quot;initial value&quot;;
+  Flower(int petals) {
+    petalCount = petals;
+    System.out.print(&quot;Constructor w/ int arg only, petalCount= &quot;
+      + petalCount);
+  }
+  Flower(String ss) {
+    System.out.print(&quot;Constructor w/ String arg only, s = &quot; + ss);
+    s = ss;
+  }
+  Flower(String s, int petals) {
+    this(petals);
+//!    this(s); // Can't call two!
+    this.s = s; // Another use of &quot;this&quot;
+    System.out.print(&quot;String &amp; int args&quot;);
+  }
+  Flower() {
+    this(&quot;hi&quot;, 47);
+    System.out.print(&quot;default constructor (no args)&quot;);
+  }
+  void printPetalCount() {
+//! this(11); // Not inside non-constructor!
+    System.out.print(&quot;petalCount = &quot; + petalCount + &quot; s = &quot;+ s);
+  }
+  public static void main(String[] args) {
+    Flower x = new Flower();
+    x.printPetalCount();
+  }
+} 
+/* Output:
+Constructor w/ int arg only, petalCount= 47
+String &amp; int args
+default constructor (no args)
+petalCount = 47 s = hi
+*///:~
+</code></pre><h1 id="5成员初始化">5.成员初始化</h1>
+<p>Java保证：所有变量在使用前都能得到恰当的初始化。</p>
+<p>在类里定义一个对象引用时，如果不将其初始化，次引用就会获得NULL。</p>
+<h2 id="51-指定初始化">5.1 指定初始化</h2>
+<p>直接在定义的时候进行初始化。</p>
+<h2 id="52-构造器初始化">5.2 构造器初始化</h2>
+<p>无法阻止自动初始化的进行，它将在构造器被调用之前发生。</p>
+<p>如下代码所示：i先被置为0，然后变成7。</p>
+<pre><code>public class Counter {
+  int i;
+  Counter() { i = 7; }
+  // ...
+} ///:~
+</code></pre><h1 id="53-初始化顺序">5.3 初始化顺序</h1>
+<p>在类的内部，变量定义的先后顺序决定了初始化顺序。即使变量定义散布在各个方法之间也会在方法被调用之前得到初始化。</p>
+<pre><code>class Window {
+  Window(int marker) { System.out.print(&quot;Window(&quot; + marker + &quot;)&quot;); }
+}
+
+class House {
+  Window w1 = new Window(1); // Before constructor
+  House() {
+    // Show that we're in the constructor:
+    System.out.print(&quot;House()&quot;);
+    w3 = new Window(33); // Reinitialize w3
+  }
+  Window w2 = new Window(2); // After constructor
+  void f() { System.out.print(&quot;f()&quot;); }
+  Window w3 = new Window(3); // At end
+}
+
+public class OrderOfInitialization {
+  public static void main(String[] args) {
+    House h = new House();
+    h.f(); // Shows that construction is done
+  }
+} 
+
+/* Output:
+Window(1)
+Window(2)
+Window(3)
+House()
+Window(33)
+f()
+*///:~
+</code></pre><h2 id="54-静态数据的初始化">5.4 静态数据的初始化</h2>
+<p>静态存储区域只占用一份存储空间。</p>
+<p><em><strong>static关键字不能应用于局部变量，只能作用于域。</strong></em></p>
+<pre><code>class Bowl {
+  Bowl(int marker) {
+    System.out.print(&quot;Bowl(&quot; + marker + &quot;)&quot;);
+  }
+  void f1(int marker) {
+    System.out.print(&quot;f1(&quot; + marker + &quot;)&quot;);
+  }
+}
+
+class Table {
+  static Bowl bowl1 = new Bowl(1);
+  Table() {
+    System.out.print(&quot;Table()&quot;);
+    bowl2.f1(1);
+  }
+  void f2(int marker) {
+    System.out.print(&quot;f2(&quot; + marker + &quot;)&quot;);
+  }
+  static Bowl bowl2 = new Bowl(2);
+}
+
+class Cupboard {
+  Bowl bowl3 = new Bowl(3);
+  static Bowl bowl4 = new Bowl(4);
+  Cupboard() {
+    System.out.print(&quot;Cupboard()&quot;);
+    bowl4.f1(2);
+  }
+  void f3(int marker) {
+    System.out.print(&quot;f3(&quot; + marker + &quot;)&quot;);
+  }
+  static Bowl bowl5 = new Bowl(5);
+}
+
+public class StaticInitialization {
+  public static void main(String[] args) {
+    System.out.print(&quot;Creating new Cupboard() in main&quot;);
+    new Cupboard();
+    System.out.print(&quot;Creating new Cupboard() in main&quot;);
+    new Cupboard();
+    table.f2(1);
+    cupboard.f3(1);
+  }
+  static Table table = new Table();
+  static Cupboard cupboard = new Cupboard();
+} 
+/* Output:
+Bowl(1)
+Bowl(2)
+Table()
+f1(1)
+Bowl(4)
+Bowl(5)
+Bowl(3)
+Cupboard()
+f1(2)
+Creating new Cupboard() in main
+Bowl(3)
+Cupboard()
+f1(2)
+Creating new Cupboard() in main
+Bowl(3)
+Cupboard()
+f1(2)
+f2(1)
+f3(1)
+*///:~
+</code></pre><h2 id="55-实例初始化">5.5 实例初始化</h2>
+<pre><code>Mug mug1;
+Mug mug2;
+
+{
+    mug1 = new Mug(1);
+    mug2 = new Mug(2);
+}
+</code></pre><h2 id="56数组初始化">5.6数组初始化</h2>
+<p>==数组：== 相同类型、用一个标识符名称封装到一起的一个对象序列或基本类型数据序列。</p>
+<p>==数组定义：== 类型名 [] 数组名；</p>
+<p>编译器不允许指定数组大小。(所以这里并没有给数组分配空间，需要初始化后才分配空间)</p>
+<p>直接初始化只能出现在数组创建的地方</p>
+<pre><code>int [] a1 = {1,2,3,4,5};
+int [] a2;
+a2 = a1; //复制了一个引用
 
 
+int [] a;
+a = new int[20];
+</code></pre><p><em><strong>小知识：</strong></em> 数组成员含有一个固定成员，length。</p>
+<pre><code>a1.length;
+</code></pre><p>打印数组<em><strong>Arrays.toString(xxx)</strong></em> 产生一位数组的可打印版本。</p>
+<pre><code>int [] a = {1,2,3,4,5};
+System.out.print(Arrays.toString(a));
+</code></pre>
 
-<ul>
-	
-</ul>
-
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -340,8 +656,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -355,6 +669,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -374,6 +689,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -427,8 +745,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/java/" title="Javas"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/java/" title="Javas" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/linux/" title="Linuxes" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -460,3 +780,4 @@
 
   </body>
 </html>
+
