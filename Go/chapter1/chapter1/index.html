@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Javas :: My New Hugo Site</title>
+    <title>Chapter1:Go语言介绍 :: My New Hugo Site</title>
 
     
     <link href="/css/nucleus.css?1601653557" rel="stylesheet">
@@ -34,7 +34,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/java/">
+  <body class="" data-url="/go/chapter1/chapter1/">
     <nav id="sidebar" class="">
 
 
@@ -95,8 +95,8 @@
   
     
     <li data-nav-id="/go/" title="Gos" class="dd-item 
+        parent
         
-        active
         
         ">
       <a href="/go/">
@@ -121,7 +121,7 @@
  
   
     
-      <li data-nav-id="/go/chapter1/chapter1/" title="Chapter1:Go语言介绍" class="dd-item ">
+      <li data-nav-id="/go/chapter1/chapter1/" title="Chapter1:Go语言介绍" class="dd-item active">
         <a href="/go/chapter1/chapter1/">
         Chapter1:Go语言介绍
         
@@ -150,8 +150,8 @@
   
     
     <li data-nav-id="/java/" title="Javas" class="dd-item 
-        parent
-        active
+        
+        
         
         ">
       <a href="/java/">
@@ -206,7 +206,7 @@
     
     <li data-nav-id="/linux/" title="Linuxes" class="dd-item 
         
-        active
+        
         
         ">
       <a href="/linux/">
@@ -316,7 +316,13 @@
             
           
           
-            <a href='/'>My New Hugo Site</a> > Javas
+            
+            
+          
+          
+            <a href='/'>My New Hugo Site</a> > <a href='/go/'>Gos</a> > Chapter1:Go语言介绍
+          
+        
           
         
           
@@ -327,7 +333,23 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#111-goroutine">1.1.1 goroutine</a></li>
+        <li><a href="#112通道">1.1.2通道</a></li>
+      </ul>
+    </li>
+    <li><a href="#12-go语言的类型">1.2 Go语言的类型</a>
+      <ul>
+        <li><a href="#121-类型简单">1.2.1 类型简单</a></li>
+        <li><a href="#122-go接口对一组行为建模">1.2.2 go接口对一组行为建模</a></li>
+        <li><a href="#123-内存管理">1.2.3 内存管理</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -343,20 +365,70 @@
           
             <h1>
               
-              Javas
+              Chapter1:Go语言介绍
             </h1>
           
 
         
 
 
+<h1 id="1go语言解决现代编程难题">1.go语言解决现代编程难题</h1>
+<p>c++/c提供很快的执行速度 Python擅长快速开发。go语言则在这两哲之间搭起了桥梁。</p>
+<h1 id="11-并发">1.1 并发</h1>
+<p>go语言特点：支持并发。</p>
+<h3 id="111-goroutine">1.1.1 goroutine</h3>
+<p>goroutine是可以与其他goroutine并行执行的函数，同时也会与主程序并行执行。
+go语言会使用一个线程来执行多个goroutine。</p>
+<pre><code>func log(msg string){
+    ...这里是一些记录日志的代码
+}
 
-	
+//代码里有些地方检测到了错误
+go log(&quot;发生了可怕的事情&quot;)
+</code></pre><p>关键字go是唯一要编写的代码，调度log函数作为独立的goroutine去运行。</p>
+<h3 id="112通道">1.1.2通道</h3>
+<p>是一种数据结构，可以让goroutine之间进行安全的数据通信。</p>
+<p>==解决：== 共享内存访问内存</p>
+<p>==并发难题：== 进程、线程或goroutine不会意外修改用户数据。</p>
+<p>==解决方法：== 同步保护。</p>
+<p>==go语言解决方法：== 通道。该模式保证同一时刻只会有一个goroutine修改数据。在几个运行goroutine之间发送数据。</p>
+<p><img src="1.png" alt="1"></p>
+<p>通道不提供跨goroutine的数据访问保护机制。</p>
+<h2 id="12-go语言的类型">1.2 Go语言的类型</h2>
+<p>go语言提供了灵活、无继承的系统类型。</p>
+<p>将一个类型嵌入到另一个类型中就能复用所有功能。意思就是，一个类型由其他更微小的类型组合而成。</p>
+<h3 id="121-类型简单">1.2.1 类型简单</h3>
+<p>支持用户自定义类型。通常包含一组带类型的字段，用于存储数据。</p>
+<p>思想：构件小的类型，合成大类型。</p>
+<h3 id="122-go接口对一组行为建模">1.2.2 go接口对一组行为建模</h3>
+<p>接口：描述类型行为。</p>
+<p>只需要实现这组行为，不需要声明这个接口。这里与Java不同。</p>
+<p><img src="2.png" alt="2"></p>
+<p>对比：</p>
+<pre><code>/*java接口例子*/
+interface User(){
+    public void login();
+    public void logout();
+}
+</code></pre><p>go的接口一般只会描述一个单一的动作。比如：io.Reader,声明一个类型有数据可以读取。</p>
+<pre><code>/*go语言*/
+type Reader interface{
+    Read(p []byte (n int,err error)) /*Read方法接受一个byte切片，返回一个整数和可能出现的错误*/
+}
+</code></pre><h3 id="123-内存管理">1.2.3 内存管理</h3>
+<p>go语言拥有现代化的垃圾回收机制。</p>
+<h1 id="2你好go">2.你好，Go</h1>
+<p>按照惯例，先来一个Hello World！</p>
+<pre><code>package main//将go程序都组织成包
 
+import &quot;fmt&quot;//import语句导入外部包，fmt包用于格式化并输出数据
 
+func main(){//与c一样，main函数是程序入口地址
+    fmt.Println(&quot;Hello World!&quot;)
+}
+</code></pre>
 
-
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -391,8 +463,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -406,6 +476,7 @@
             
             
                 
+                    
                     
                 
                 
@@ -426,6 +497,8 @@
             
                 
                     
+                        
+                        
                     
                 
                 
@@ -439,9 +512,6 @@
             
             
                 
-                    
-                        
-                        
                     
                 
                 
@@ -514,10 +584,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/go/chapter1/chapter1/" title="Chapter1:Go语言介绍"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/go/" title="Gos"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/java/chapter5/initialize/" title="Chapter 5 初始化与清理" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/java/" title="Javas" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -549,3 +619,4 @@
 
   </body>
 </html>
+

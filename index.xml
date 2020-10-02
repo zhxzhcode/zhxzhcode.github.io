@@ -6,10 +6,38 @@
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 28 Sep 2020 14:23:10 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 02 Oct 2020 23:30:10 +0800</lastBuildDate>
     
 	<atom:link href="https://zhxzhcode.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Chapter1:Go语言介绍</title>
+      <link>https://zhxzhcode.github.io/go/chapter1/chapter1/</link>
+      <pubDate>Fri, 02 Oct 2020 23:30:10 +0800</pubDate>
+      
+      <guid>https://zhxzhcode.github.io/go/chapter1/chapter1/</guid>
+      <description>1.go语言解决现代编程难题 c++/c提供很快的执行速度 Python擅长快速开发。go语言则在这两哲之间搭起了桥梁。
+1.1 并发 go语言特点：支持并发。
+1.1.1 goroutine goroutine是可以与其他goroutine并行执行的函数，同时也会与主程序并行执行。 go语言会使用一个线程来执行多个goroutine。
+func log(msg string){ ...这里是一些记录日志的代码 } //代码里有些地方检测到了错误 go log(&amp;quot;发生了可怕的事情&amp;quot;) 关键字go是唯一要编写的代码，调度log函数作为独立的goroutine去运行。
+1.1.2通道 是一种数据结构，可以让goroutine之间进行安全的数据通信。
+==解决：== 共享内存访问内存
+==并发难题：== 进程、线程或goroutine不会意外修改用户数据。
+==解决方法：== 同步保护。
+==go语言解决方法：== 通道。该模式保证同一时刻只会有一个goroutine修改数据。在几个运行goroutine之间发送数据。
+通道不提供跨goroutine的数据访问保护机制。
+1.2 Go语言的类型 go语言提供了灵活、无继承的系统类型。
+将一个类型嵌入到另一个类型中就能复用所有功能。意思就是，一个类型由其他更微小的类型组合而成。
+1.2.1 类型简单 支持用户自定义类型。通常包含一组带类型的字段，用于存储数据。
+思想：构件小的类型，合成大类型。
+1.2.2 go接口对一组行为建模 接口：描述类型行为。
+只需要实现这组行为，不需要声明这个接口。这里与Java不同。
+对比：
+/*java接口例子*/ interface User(){ public void login(); public void logout(); } go的接口一般只会描述一个单一的动作。比如：io.Reader,声明一个类型有数据可以读取。
+/*go语言*/ type Reader interface{ Read(p []byte (n int,err error)) /*Read方法接受一个byte切片，返回一个整数和可能出现的错误*/ } 1.2.3 内存管理 go语言拥有现代化的垃圾回收机制。
+2.你好，Go 按照惯例，先来一个Hello World！</description>
+    </item>
     
     <item>
       <title>Chapter 5 初始化与清理</title>

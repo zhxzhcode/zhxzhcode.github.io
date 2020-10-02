@@ -3,17 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://zhxzhcode.github.io/go/chapter1/chapter1/</loc>
+    <lastmod>2020-10-02T23:30:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxzhcode.github.io/go/</loc>
+    <lastmod>2020-10-02T23:30:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://zhxzhcode.github.io/</loc>
+    <lastmod>2020-10-02T23:30:10+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://zhxzhcode.github.io/java/chapter5/initialize/</loc>
     <lastmod>2020-09-28T14:23:10+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://zhxzhcode.github.io/java/</loc>
-    <lastmod>2020-09-28T14:23:10+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://zhxzhcode.github.io/</loc>
     <lastmod>2020-09-28T14:23:10+08:00</lastmod>
   </url>
   
